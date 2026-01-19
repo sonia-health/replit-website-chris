@@ -15,6 +15,12 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* When mobile menu is open */
+.navigation--menu-open {
+  background-color: var(--color-background);
+  z-index: calc(var(--z-modal) + 2);
+}
+
 .navigation__inner {
   display: flex;
   align-items: center;
@@ -108,14 +114,20 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   background-color: var(--color-background);
-  z-index: var(--z-modal-backdrop);
+  z-index: var(--z-modal);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  /* iOS safe area */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .navigation__overlay--open {
@@ -126,6 +138,8 @@
 .navigation__mobile-links {
   list-style: none;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .navigation__mobile-links li {

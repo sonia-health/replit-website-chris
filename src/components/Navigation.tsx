@@ -50,7 +50,7 @@ export default function Navigation() {
   };
 
   return (
-    <header className={`navigation ${isScrolled ? 'navigation--scrolled' : ''}`}>
+    <header className={`navigation ${isScrolled ? 'navigation--scrolled' : ''} ${isMenuOpen ? 'navigation--menu-open' : ''}`}>
       <nav className="navigation__inner">
         <a href="#hero" className="navigation__logo" onClick={(e) => handleNavClick(e, 'hero')}>
           <img src="/sonia-logo-light.svg" alt="Sonia" className="navigation__logo-img" />
