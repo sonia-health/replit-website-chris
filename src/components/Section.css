@@ -1,0 +1,104 @@
+.section {
+  padding: var(--section-padding) 0;
+  width: 100%;
+}
+
+.section--default {
+  background-color: var(--color-background);
+}
+
+.section--surface {
+  background-color: var(--color-surface);
+}
+
+.section__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--transition-slower),
+    transform var(--transition-slower);
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section--visible .section__container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children animation */
+.section__container > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow);
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section--visible .section__container > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section--visible .section__container > *:nth-child(1) { transition-delay: 50ms; }
+.section--visible .section__container > *:nth-child(2) { transition-delay: 150ms; }
+.section--visible .section__container > *:nth-child(3) { transition-delay: 250ms; }
+.section--visible .section__container > *:nth-child(4) { transition-delay: 350ms; }
+.section--visible .section__container > *:nth-child(5) { transition-delay: 450ms; }
+.section--visible .section__container > *:nth-child(6) { transition-delay: 550ms; }
+
+/* Section typography */
+.section__title {
+  font-family: var(--font-serif);
+  font-size: var(--font-h1);
+  font-weight: 400;
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-primary);
+}
+
+.section__subtitle {
+  font-size: var(--font-body);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin-bottom: var(--space-2xl);
+}
+
+.section__text {
+  font-size: var(--font-body);
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.section__text + .section__text {
+  margin-top: var(--space-lg);
+}
+
+.section__text--large {
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* Centered content variant */
+.section--centered .section__container {
+  text-align: center;
+}
+
+.section--centered .section__subtitle,
+.section--centered .section__text {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .section__container,
+  .section__container > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

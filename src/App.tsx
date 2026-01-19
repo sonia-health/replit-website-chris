@@ -1,107 +1,162 @@
-
-import { useEffect, useState } from 'react'
-import './App.css'
-import NavBar from './components/NavBar'
-import MenuButton from './components/MenuButton'
-import Footer from './components/Footer'
-
-export type Tab = 'why' | 'hiring' | 'sonia' | 'research' | 'partnerships';
+import './App.css';
+import { Mic, Clock, Shield } from 'lucide-react';
+import Navigation from './components/Navigation';
+import HeroSection from './components/HeroSection';
+import Section from './components/Section';
+import TestimonialsSection from './components/TestimonialsSection';
+import Button from './components/Button';
+import Footer from './components/Footer';
 
 export default function App() {
-  const [isAnimated, setIsAnimated] = useState(false);
-  const [showLogo, setShowLogo] = useState(true);
-  const [showContent, setShowContent] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentTab, setCurrentTab] = useState<Tab>('sonia');
-  const [isContentVisible, setIsContentVisible] = useState(true);
-  const [isButtonVisible, setIsButtonVisible] = useState(true);
-  const [contentHeight, setContentHeight] = useState('auto');
-
-  const tabContent = {
-    why: "Millions of people struggle with their mental health but can’t access a therapist. We’re not trying to replace the Tuesday 4 pm in-person human therapy session. Our aim is to build something for people who would otherwise suffer alone on Tuesday at 4 pm. Or 4 am. Or any other time.",
-    hiring: "We’re hiring engineers and psychologists. We recently raised $3.5m from Y Combinator, the founders of Reddit, Instacart, Verkada and many others. We care about intelligence, hard work and kindness. Email jobs@soniahealth.com if you want to join us in San Francisco to make people happier at scale.",
-    sonia: "Sonia is a conversational AI for emotional support that offers voice based wellbeing sessions. Download the free research preview to try it out.",
-    research: "Our sole focus is to build the provably most effective AI solution for emotional support. We are actively pursuing research collaborations with academic institutions for clinical trials, real-world data analysis and other research. Please reach out to research@soniahealth.com to collaborate.",
-    partnerships: "In select cases we partner with employers and healthcare organizations to offer Sonia as a mobile app, API or white-label solution. Please reach out to info@soniahealth.com for more information."
-  };
-
-  const handleTabChange = async (tab: Tab) => {
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-      setIsContentVisible(false);
-      await new Promise(resolve => setTimeout(resolve, 50));
-      setIsMenuOpen(false);
-      await new Promise(resolve => setTimeout(resolve, 300));
-      setCurrentTab(tab);
-      // Small delay to ensure content switch happens after menu animation
-      await new Promise(resolve => setTimeout(resolve, 300));
-      setIsContentVisible(true);
-    } else {
-      // Desktop animation sequence
-      setIsContentVisible(false);
-      setIsButtonVisible(false);
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setCurrentTab(tab);
-      await new Promise(resolve => setTimeout(resolve, 200));
-      setIsContentVisible(true);
-      setIsButtonVisible(true);
-    }
-  };
-
-  useEffect(() => {
-    const animationTimer = setTimeout(() => {
-      setIsAnimated(true);
-      setTimeout(() => {
-        setShowLogo(false);
-        setTimeout(() => {
-          setShowContent(true);
-        }, 300);
-      }, 500);
-    }, 500);
-
-    return () => clearTimeout(animationTimer);
-  }, []);
-
   return (
-    <main className={`${isAnimated ? 'animated' : ''}`}>
-      <img 
-        src="/logosoniacoconut.svg" 
-        alt="Sonia Logo" 
-        className={`logo ${!showLogo ? 'hidden' : ''}`} 
-      />
-      <div className={`content ${showContent ? 'visible' : ''} ${isMenuOpen ? 'menu-open' : ''}`}>
-        <MenuButton isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-        <NavBar onTabChange={handleTabChange} currentTab={currentTab} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-        <div className="content-area">
-          <div className={`content-wrapper ${!isContentVisible ? 'shrunk' : ''}`}>
-            {currentTab === 'sonia'}
-            <div className="content-text">
-              {tabContent[currentTab]}
+    <>
+      <Navigation />
+
+      <main>
+        <HeroSection />
+
+        {/* Why Section */}
+        <Section id="why">
+          <h2 className="section__title">Why Sonia exists</h2>
+          <p className="section__text">
+            Millions of people struggle with their mental health but can't access human support.
+            The waiting lists are long, the costs are high, and the stigma is real.
+          </p>
+          <p className="section__text">
+            Every human deserves access to help when they need it.{' '}
+            <span className="section__text--large">We are building a resource for the rest of us.</span>
+          </p>
+        </Section>
+
+        {/* Product Section */}
+        <Section id="product" background="surface">
+          <h2 className="section__title">Meet Sonia</h2>
+          <p className="section__text">
+            Sonia is a conversational AI companion specifically built for emotional support. Sonia offers voice- and text-based wellbeing sessions, and by using her therapeutic conceptualization that she builds on top of, she provides helpful content in form of meditations, journals, recommendations and exercises.
+          </p>
+          <p className="section__text">
+            You can talk through what's on your mind, process your emotions and build skills — all through natural conversation.
+          </p>
+          <p className="section__text">
+            Sonia's proprietary system is built on a foundation of cognitive behavioral therapy (CBT) and Acceptance and Commitment Therapy (ACT). This allows her to provide you with evidence-based interventions that are tailored to your specific needs.
+          </p>
+          <div className="product-features">
+            <div className="product-feature">
+              <div className="product-feature__icon product-feature__icon--sky">
+                <Mic size={28} strokeWidth={1.5} />
+              </div>
+              <h3 className="product-feature__title">Voice-first</h3>
+              <p className="product-feature__text">
+                Sometimes you just need to talk it out. Sonia listens and responds
+                naturally, like a conversation with a trusted friend.
+              </p>
             </div>
-            {currentTab === 'sonia' && (
-              <a 
-                href="https://apps.apple.com/us/app/sonia-ai-voice-therapy/id6472111765" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="action-button"
-              >
-                Download Sonia
-              </a>
-            )}
-            {currentTab === 'hiring' && (
-              <img 
-                src="/yclogo.svg" 
-                alt="YC Logo" 
-                className="content-image"
-              />
-            )}
+            <div className="product-feature">
+              <div className="product-feature__icon product-feature__icon--sage">
+                <Clock size={28} strokeWidth={1.5} />
+              </div>
+              <h3 className="product-feature__title">Always available</h3>
+              <p className="product-feature__text">
+                Life doesn't wait for office hours. Sonia is there whenever you
+                need support — day or night.
+              </p>
+            </div>
+            <div className="product-feature">
+              <div className="product-feature__icon product-feature__icon--lavender">
+                <Shield size={28} strokeWidth={1.5} />
+              </div>
+              <h3 className="product-feature__title">Private & secure</h3>
+              <p className="product-feature__text">
+                Your conversations are yours. We take privacy seriously and protect
+                your data with industry-leading security and HIPAA standards.
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className={`footer-wrapper ${showContent ? 'visible' : ''}`}>
-        <Footer />
-      </div>
-    </main>
-  )
+          <div className="product-cta">
+            <Button
+              href="https://apps.apple.com/us/app/sonia-ai-emotional-support/id6472111765"
+              variant="primary"
+              size="large"
+              external
+            >
+              Download Sonia
+            </Button>
+          </div>
+        </Section>
+
+        {/* Testimonials Section */}
+        <TestimonialsSection />
+
+        {/* Research Section */}
+        <Section id="research">
+          <h2 className="section__title">Research partnerships</h2>
+          <p className="section__text">
+            We are committed to building the provably most effective AI solution for
+            emotional support. We are actively pursuing research collaborations with leading
+            academic institutions for clinical trials, real-world data analysis, and
+            AI safety research.
+          </p>
+          <p className="section__text">
+            If you're a researcher interested in studying AI-powered mental health
+            support, reach out to our research team.
+          </p>
+          <div className="section-cta">
+            <Button
+              href="mailto:research@soniahealth.com"
+              variant="secondary"
+              size="medium"
+            >
+              Contact research team
+            </Button>
+          </div>
+        </Section>
+
+        {/* Partnerships Section */}
+        <Section id="partnerships" background="surface">
+          <h2 className="section__title">Enterprise partnerships</h2>
+          <p className="section__text">
+            We partner with various organizations to integrate Sonia into their workflows, products and services. Bring
+            accessible emotional support to your employees, patients or customers.
+          </p>
+          <div className="section-cta">
+            <Button
+              href="mailto:info@soniahealth.com"
+              variant="secondary"
+              size="medium"
+            >
+              Get in touch
+            </Button>
+          </div>
+        </Section>
+
+        {/* Hiring Section */}
+        <Section id="hiring">
+          <div className="hiring-header">
+            <h2 className="section__title">Join our team</h2>
+            <img src="/yclogo.svg" alt="Y Combinator" className="yc-badge" />
+          </div>
+          <p className="section__text">
+            We're hiring engineers, designers, psychologists and more. We raised capital from top investors including
+            Y Combinator, the founders of Reddit, Instacart, Verkada, and many others.
+          </p>
+          <p className="section__text">
+            We care about intelligence, curiosity and genuine kindness towards others. If you want to join
+            us in San Francisco to contribute to the future of mental health support, we'd love to hear
+            from you.
+          </p>
+          <div className="section-cta">
+            <Button
+              href="mailto:jobs@soniahealth.com"
+              variant="primary"
+              size="medium"
+            >
+              Reach out
+            </Button>
+          </div>
+        </Section>
+      </main>
+
+      <Footer />
+    </>
+  );
 }

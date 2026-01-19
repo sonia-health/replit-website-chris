@@ -1,0 +1,122 @@
+:root {
+  /* Colors - Clarity Light Theme */
+  --color-background: #F8F6F2;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #2C2A26;
+  --color-text-secondary: #8A867E;
+  --color-text-tertiary: #B5B1A9;
+  --color-border: #E8E5DF;
+  --color-border-subtle: #F0EDE8;
+
+  /* Accent Colors */
+  --color-accent-sky: #B8C4D4;
+  --color-accent-sage: #C5D4C0;
+  --color-accent-lavender: #D4C4D0;
+  --color-accent-sand: #D4CDB8;
+
+  /* Legacy color mapping */
+  --bora: #ADD3FF;
+  --coconut: #F8F6F4;
+  --forest: #0F221E;
+
+  /* Fluid Typography */
+  --font-display: clamp(2.5rem, 2rem + 2vw, 4rem);
+  --font-h1: clamp(2rem, 1.5rem + 1.5vw, 2.75rem);
+  --font-h2: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --font-h3: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --font-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-small: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+
+  /* Font Families */
+  --font-serif: 'Libre Baskerville', Georgia, serif;
+  --font-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing (4px base) */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 0.75rem;   /* 12px */
+  --space-base: 1rem;    /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+  --space-4xl: 6rem;     /* 96px */
+  --space-5xl: 8rem;     /* 128px */
+
+  /* Layout */
+  --max-width: 1200px;
+  --content-padding: clamp(1rem, 5vw, 3rem);
+  --section-padding: clamp(4rem, 10vh, 8rem);
+
+  /* Animation */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+  --transition-slower: 800ms ease;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Z-Index Scale */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-tooltip: 600;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
