@@ -24,10 +24,10 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <Section id="testimonials" background="surface" className="testimonials-section">
+    <Section id="testimonials" background="default" className="testimonials-section">
       <h2 className="section__title">Stories from our community</h2>
       <p className="section__subtitle">
-        Real experiences from people who found support with Sonia.
+        More than 20,000 humans have already found support with Sonia.
       </p>
       <div className="testimonials__grid">
         {testimonials.map((testimonial, index) => (

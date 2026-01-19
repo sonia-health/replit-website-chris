@@ -16,7 +16,7 @@
 }
 
 .testimonial {
-  background-color: var(--color-background);
+  background-color: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   border: 1px solid var(--color-border-subtle);
@@ -29,22 +29,22 @@
 
 /* Accent color variants */
 .testimonial--accent-1 {
-  background: linear-gradient(135deg, rgba(184, 196, 212, 0.15) 0%, var(--color-background) 100%);
+  background: linear-gradient(135deg, rgba(184, 196, 212, 0.15) 0%, var(--color-surface) 100%);
   border-color: var(--color-accent-sky);
 }
 
 .testimonial--accent-2 {
-  background: linear-gradient(135deg, rgba(197, 212, 192, 0.15) 0%, var(--color-background) 100%);
+  background: linear-gradient(135deg, rgba(197, 212, 192, 0.15) 0%, var(--color-surface) 100%);
   border-color: var(--color-accent-sage);
 }
 
 .testimonial--accent-3 {
-  background: linear-gradient(135deg, rgba(212, 196, 208, 0.15) 0%, var(--color-background) 100%);
+  background: linear-gradient(135deg, rgba(212, 196, 208, 0.15) 0%, var(--color-surface) 100%);
   border-color: var(--color-accent-lavender);
 }
 
 .testimonial--accent-4 {
-  background: linear-gradient(135deg, rgba(212, 205, 184, 0.15) 0%, var(--color-background) 100%);
+  background: linear-gradient(135deg, rgba(212, 205, 184, 0.15) 0%, var(--color-surface) 100%);
   border-color: var(--color-accent-sand);
 }
 

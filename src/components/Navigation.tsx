@@ -53,7 +53,7 @@ export default function Navigation() {
     <header className={`navigation ${isScrolled ? 'navigation--scrolled' : ''}`}>
       <nav className="navigation__inner">
         <a href="#hero" className="navigation__logo" onClick={(e) => handleNavClick(e, 'hero')}>
-          <img src="/logosoniacoconut.svg" alt="Sonia" className="navigation__logo-img" />
+          <img src="/sonia-logo-light.svg" alt="Sonia" className="navigation__logo-img" />
         </a>
 
         {/* Desktop Navigation */}

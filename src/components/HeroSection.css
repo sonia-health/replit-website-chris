@@ -9,6 +9,34 @@
   padding: var(--space-5xl) var(--content-padding) var(--space-3xl);
   position: relative;
   background-color: var(--color-background);
+  overflow: hidden;
+  --mouse-x: -1000px;
+  --mouse-y: -1000px;
+}
+
+/* Background image layer */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  /* Base opacity for the background image */
+  pointer-events: none;
+}
+
+/* Fog overlay with mouse-reactive spotlight */
+.hero__fog {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 300px at var(--mouse-x) var(--mouse-y),
+      transparent 0%,
+      transparent 40%,
+      rgba(248, 246, 242, 0.5) 70%,
+      rgba(248, 246, 242, 0.85) 100%);
+  pointer-events: none;
 }
 
 .hero__content {
@@ -18,6 +46,8 @@
   transition:
     opacity 1s ease,
     transform 1s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .hero--loaded .hero__content {
@@ -59,10 +89,13 @@
 }
 
 @keyframes gentlePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     filter: brightness(1);
   }
+
   50% {
     transform: scale(1.05);
     filter: brightness(1.1);
@@ -114,6 +147,7 @@
   cursor: pointer;
   transition: color var(--transition-fast);
   padding: var(--space-sm);
+  z-index: 1;
 }
 
 .hero__scroll-indicator:hover {
@@ -125,6 +159,7 @@
     opacity: 0;
     transform: translateX(-50%) translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -132,9 +167,12 @@
 }
 
 @keyframes bobbing {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
+
   50% {
     transform: translateX(-50%) translateY(8px);
   }
@@ -176,6 +214,7 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .hero__content,
   .hero__cta,
   .hero__brand {

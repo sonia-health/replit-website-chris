@@ -4,6 +4,27 @@ main {
   min-height: 100vh;
 }
 
+/* Section Divider */
+.section-divider {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  position: relative;
+}
+
+.section-divider::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-border) 20%,
+    var(--color-border) 80%,
+    transparent
+  );
+}
+
 /* Section CTA buttons */
 .section-cta {
   margin-top: var(--space-xl);

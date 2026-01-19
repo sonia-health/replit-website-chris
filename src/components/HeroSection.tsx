@@ -1,14 +1,58 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Button from './Button';
 import './HeroSection.css';
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     // Trigger animation after mount
     const timer = setTimeout(() => setIsLoaded(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let wobbleOffset = { x: 0, y: 0 };
+    let animationId: number;
+
+    // Wobble animation
+    const animateWobble = () => {
+      const time = Date.now() * 0.002;
+      wobbleOffset.x = Math.sin(time) * 15 + Math.sin(time * 1.3) * 10;
+      wobbleOffset.y = Math.cos(time * 0.9) * 15 + Math.cos(time * 1.1) * 10;
+
+      hero.style.setProperty('--mouse-x', `${mouseX + wobbleOffset.x}px`);
+      hero.style.setProperty('--mouse-y', `${mouseY + wobbleOffset.y}px`);
+
+      animationId = requestAnimationFrame(animateWobble);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = hero.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    };
+
+    const handleMouseLeave = () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    };
+
+    hero.addEventListener('mousemove', handleMouseMove);
+    hero.addEventListener('mouseleave', handleMouseLeave);
+    animationId = requestAnimationFrame(animateWobble);
+
+    return () => {
+      hero.removeEventListener('mousemove', handleMouseMove);
+      hero.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationId);
+    };
   }, []);
 
   const scrollToContent = () => {
@@ -24,17 +68,18 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="hero" className={`hero ${isLoaded ? 'hero--loaded' : ''}`}>
+    <section id="hero" ref={heroRef} className={`hero ${isLoaded ? 'hero--loaded' : ''}`}>
+      <div className="hero__bg" aria-hidden="true" />
+      <div className="hero__fog" aria-hidden="true" />
       <div className="hero__content">
         <div className="hero__brand">
-          <img src="/logosoniabora.svg" alt="" className="hero__logo" />
           <span className="hero__brand-name">Sonia</span>
         </div>
         <h1 className="hero__title">
           Your AI companion for emotional wellbeing
         </h1>
         <p className="hero__subtitle">
-          Your partner to grow, anytime and lifelong.
+          Your partner to grow. Anytime and lifelong.
         </p>
         <div className="hero__cta">
           <Button

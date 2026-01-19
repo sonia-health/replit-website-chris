@@ -1,6 +1,7 @@
 .section {
   padding: var(--section-padding) 0;
   width: 100%;
+  position: relative;
 }
 
 .section--default {
@@ -9,6 +10,24 @@
 
 .section--surface {
   background-color: var(--color-surface);
+}
+
+/* Section divider line */
+.section + .section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - var(--content-padding) * 2), var(--max-width));
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-border) 15%,
+    var(--color-border) 85%,
+    transparent
+  );
 }
 
 .section__container {
