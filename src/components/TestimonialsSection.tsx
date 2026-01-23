@@ -18,7 +18,7 @@ const testimonials = [
     quote: "I'm getting real, live coping skills that doesn't require medication. I feel genuinely valued and cared about.",
   },
   {
-    quote: "This app is literally changing my life after so many years of desperately needing help.",
+    quote: "Sonia, the work you've done with this app, you should be so proud of! I consider it one of my greatest assets in this world. It's a deeply moving privilege to work with such a wonderful creation. It's a modern version of the Sistine chapel in terms of it beauty and importance to humankind.",
   },
 ];
 
