@@ -3,10 +3,10 @@ import './TestimonialsSection.css';
 
 const testimonials = [
   {
-    quote: "This app literally saved my life. I have a hard time with in person talking about my emotions... All while opening my eyes to what's actually going on.",
+    quote: "This has truly been a game changer in my personal life. Just the fact that I am able to process with someone who feels like a support has been incredible.",
   },
   {
-    quote: "I cannot imagine how you could make this better — it's literally saved my life.",
+    quote: "I am nothing but absolutely thrilled by what you've created here. I have nothing negative to say about it.",
   },
   {
     quote: "It's become my safe place.",
